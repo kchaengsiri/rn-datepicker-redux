@@ -87,7 +87,10 @@ DatePicker.defaultProps = {
   minDate: undefined,
   pickerStyle: 'default',
   placeholder: '',
-  value: undefined
+  value: undefined,
+  onChange: undefined,
+  onBlur: undefined,
+  onFocus: undefined
 }
 
 DatePicker.propTypes = {
@@ -96,7 +99,10 @@ DatePicker.propTypes = {
   minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   pickerStyle: PropTypes.oneOf(['calendar', 'spinner', 'default']),
   placeholder: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func
 }
 
 export default DatePicker
