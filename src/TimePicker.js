@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  DatePickerAndroid,
   TimePickerAndroid,
   TouchableHighlight,
   Text,
@@ -9,7 +8,7 @@ import {
 } from 'react-native'
 import moment from 'moment'
 
-class DatePicker extends Component {
+class TimePicker extends Component {
   componentDidMount () {
     console.log(this.props)
   }
@@ -77,7 +76,7 @@ class DatePicker extends Component {
   }
 }
 
-DatePicker.defaultProps = {
+TimePicker.defaultProps = {
   is24Hour: undefined,
   placeholder: '',
   value: undefined,
@@ -86,7 +85,7 @@ DatePicker.defaultProps = {
   onFocus: undefined
 }
 
-DatePicker.propTypes = {
+TimePicker.propTypes = {
   is24Hour: PropTypes.bool,
   placeholder: PropTypes.string,
   value: PropTypes.string,
@@ -95,4 +94,4 @@ DatePicker.propTypes = {
   onFocus: PropTypes.func
 }
 
-export default DatePicker
+export default TimePicker
