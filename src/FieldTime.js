@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import DatePicker from './DatePicker'
+import TimePicker from './TimePicker'
 
-const FieldDate = ({ input, meta }) => (
+const FieldTime = ({ input, meta }) => (
   <View>
-    <DatePicker
+    <TimePicker
       // format='DD/MM/YYYY'
       // maxDate='31/07/2017'
       // minDate='01/06/2017'
@@ -24,4 +24,4 @@ const FieldDate = ({ input, meta }) => (
   </View>
 )
 
-export default FieldDate
+export default FieldTime

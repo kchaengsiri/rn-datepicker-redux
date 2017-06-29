@@ -2,7 +2,9 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 
+import validate from './validate'
 import FieldDate from './FieldDate'
+import FieldTime from './FieldTime'
 
 const submit = values => {
   console.log('submit values:', values)
@@ -11,11 +13,13 @@ const submit = values => {
 const Form = ({ handleSubmit }) => (
   <View style={{ padding: 15 }}>
     <View style={{ marginBottom: 15 }}>
-      <Text>
-        Date:
-      </Text>
-
+      <Text>Date:</Text>
       <Field name='date' component={ FieldDate } />
+    </View>
+
+    <View style={{ marginBottom: 15 }}>
+      <Text>Time:</Text>
+      <Field name='time' component={ FieldTime } />
     </View>
 
     <TouchableOpacity
@@ -39,7 +43,8 @@ const Form = ({ handleSubmit }) => (
 )
 
 Form = reduxForm({
-  form: 'datetime'
+  form: 'datetime',
+  validate
 })(Form)
 
 export default Form
