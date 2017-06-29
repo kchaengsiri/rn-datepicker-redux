@@ -26,61 +26,68 @@ class DateTimePicker extends Component {
     }
   }
 
-  _getDate (date) {
-    if (!date || date === '') {
+  _isTimestamp (value) {
+    return ((/^\d{1,13}$/g).test(value))
+  }
+
+  _isDate (value) {
+    return (value instanceof Date)
+  }
+
+  _getDate (value) {
+    const { format,minDate, maxDate } = this.props
+    if (!value || value === '') {
       const now = moment().valueOf()
-      if (this.props.minDate) {
-        const _minDate = this._getDate(this.props.minDate)
+      if (minDate) {
+        const _minDate = this._getDate(minDate)
         if (now < _minDate) {
           return _minDate
         }
       }
-      if (this.props.maxDate) {
-        const _maxDate = this._getDate(this.props.maxDate)
+      if (maxDate) {
+        const _maxDate = this._getDate(maxDate)
         if (now > _maxDate) {
           return _maxDate
         }
       }
       return now
+    } else if (this._isDate(value)) {
+      return value
+    } else if (this._isTimestamp(value)) {
+      return Number(value)
+    } else {
+      return moment(value, format).valueOf()
     }
-
-    if (date instanceof Date) {
-      return date
-    }
-
-    // timestamp ?
-    if (date.length > 0 && (/^\d+$/g).test(date)) {
-      return Number(date)
-    }
-    return moment(date, this.props.format).valueOf()
   }
 
-  _getTime (time) {
-    if (!time || time === '') {
+  _getTime (value) {
+    if (this._isDate(value)) {
+      return {
+        hour: value.getHours(),
+        minute: value.getMinutes()
+      }
+    } else if (this._isTimestamp(value)) {
+      let _time = moment(value)
+      return {
+        hour: _time.hour(),
+        minute: _time.minute()
+      }
+    } else {
       let _time = moment()
       return {
         hour: _time.hour(),
         minute: _time.minute()
       }
     }
-
-    let _time = time.split(':')
-    if (_time.length >= 2) {
-      return {
-        hour: Number(_time[0]),
-        minute: Number(_time[1])
-      }
-    } else {
-      return this._getTime()
-    }
   }
 
   _datePicker () {
+    const { value, minDate, maxDate, pickerStyle } = this.props
     return DatePickerAndroid.open({
-      date: this._getDate(this.props.value),
-      minDate: this.props.minDate && this._getDate(this.props.minDate),
-      maxDate: this.props.maxDate && this._getDate(this.props.maxDate),
-      mode: this.props.pickerStyle
+      date: this._getDate(value),
+      minDate: minDate && this._getDate(minDate),
+      maxDate: maxDate && this._getDate(maxDate),
+      mode: pickerStyle
     })
   }
   _datePickerCallback ({ action, day, month, year }) {
@@ -92,10 +99,11 @@ class DateTimePicker extends Component {
   }
 
   _timePicker () {
-    const time = this._getTime(this.props.value)
+    const { value, is24Hour } = this.props
+    const time = this._getTime(value)
     return TimePickerAndroid.open({
       ...time,
-      is24Hour: false
+      is24Hour: is24Hour
     })
   }
   _timePickerCallback ({ action, hour, minute }) {
@@ -107,11 +115,13 @@ class DateTimePicker extends Component {
   }
 
   _datetimePickerCallback ({ action, day, month, year }) {
-    if (action !== DatePickerAndroid.dismissedAction) {
+    if (action === DatePickerAndroid.dismissedAction) {
+      this._action('onBlur')
+    } else {
       this._timePicker().then(({ action, hour, minute }) => {
         if (action !== TimePickerAndroid.dismissedAction) {
-          let result = moment([year, month, day]).hours(hour).minutes(minute)
-          this._action('onChange', result.format(this.props.format))
+          let result = moment([year, month, day]).hours(hour).minutes(minute).toDate()
+          this._action('onChange', result)
         }
         this._action('onBlur')
       })
@@ -138,13 +148,11 @@ class DateTimePicker extends Component {
 
   _appearance ({ mode, format, placeholder, value }) {
     let _text
-    let _date = value
+    let _result = value
     let _format = format || defaultFormat[mode]
-    if (_date && _date !== '') {
-      if (_date instanceof Date) {
-        _date = moment(_date).format(_format)
-      }
-      _text = <Text style={{ color: '#222' }}>{ _date }</Text>
+    if (_result && _result !== '') {
+      _result = moment(_result).format(_format)
+      _text = <Text style={{ color: '#222' }}>{ _result }</Text>
     } else {
       _text = <Text style={{ color: '#ccc' }}>{ placeholder }</Text>
     }

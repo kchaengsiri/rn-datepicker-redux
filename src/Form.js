@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import validate from './validate'
 import FieldDate from './FieldDate'
 import FieldTime from './FieldTime'
+import FieldDateTime from './FieldDateTime'
 
 const submit = values => {
   console.log('submit values:', values)
@@ -20,6 +21,11 @@ const Form = ({ handleSubmit }) => (
     <View style={{ marginBottom: 15 }}>
       <Text>Time:</Text>
       <Field name='time' component={ FieldTime } />
+    </View>
+
+    <View style={{ marginBottom: 15 }}>
+      <Text>Datetime:</Text>
+      <Field name='datetime' component={ FieldDateTime } />
     </View>
 
     <TouchableOpacity

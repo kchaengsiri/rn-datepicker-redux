@@ -1,16 +1,15 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import TimePicker from './TimePicker'
+import DateTimePicker from './DateTimePicker'
 
 const FieldTime = ({ input, meta }) => (
   <View>
-    <TimePicker
-      // format='DD/MM/YYYY'
-      // maxDate='31/07/2017'
-      // minDate='01/06/2017'
-      // pickerStyle='spinner'
-      // placeholder='23/11/1990'
+    <DateTimePicker
+      mode='time'
+      // format='h:mm a'
+      // placeholder='please select time'
+      // is24Hour={ true }
       onChange={ input.onChange }
       onBlur={ input.onBlur }
       onFocus={ input.onFocus }
