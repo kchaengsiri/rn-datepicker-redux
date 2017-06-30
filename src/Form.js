@@ -3,9 +3,12 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 
 import validate from './validate'
-import FieldDate from './FieldDate'
-import FieldTime from './FieldTime'
-import FieldDateTime from './FieldDateTime'
+// import FieldDate from './FieldDate'
+// import FieldTime from './FieldTime'
+// import FieldDateTime from './FieldDateTime'
+import FieldDateIOS from './FieldDateIOS'
+import FieldTimeIOS from './FieldTimeIOS'
+import FieldDateTimeIOS from './FieldDateTimeIOS'
 
 const submit = values => {
   console.log('submit values:', values)
@@ -13,19 +16,34 @@ const submit = values => {
 
 const Form = ({ handleSubmit }) => (
   <View style={{ padding: 15 }}>
-    <View style={{ marginBottom: 15 }}>
+    {/*<View style={{ marginBottom: 15 }}>
       <Text>Date:</Text>
       <Field name='date' component={ FieldDate } />
+    </View>*/}
+
+    {/*<View style={{ marginBottom: 15 }}>
+      <Text>Time:</Text>
+      <Field name='time' component={ FieldTime } />
+    </View>*/}
+
+    {/*<View style={{ marginBottom: 15 }}>
+      <Text>Datetime:</Text>
+      <Field name='datetime' component={ FieldDateTime } />
+    </View>*/}
+
+    <View style={{ marginBottom: 15 }}>
+      <Text>Datetime:</Text>
+      <Field name='datetime' component={ FieldDateTimeIOS } />
+    </View>
+
+    <View style={{ marginBottom: 15 }}>
+      <Text>Date:</Text>
+      <Field name='date' component={ FieldDateIOS } />
     </View>
 
     <View style={{ marginBottom: 15 }}>
       <Text>Time:</Text>
-      <Field name='time' component={ FieldTime } />
-    </View>
-
-    <View style={{ marginBottom: 15 }}>
-      <Text>Datetime:</Text>
-      <Field name='datetime' component={ FieldDateTime } />
+      <Field name='time' component={ FieldTimeIOS } />
     </View>
 
     <TouchableOpacity
