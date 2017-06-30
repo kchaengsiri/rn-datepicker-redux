@@ -15,7 +15,7 @@ class DateTimePicker extends Component {
     super(props)
 
     this.state = {
-      date: this.props.value,
+      date: this._getDate(this.props.value),
       defaultFormat: {
         date: 'DD/MM/YYYY',
         time: 'HH:mm',
