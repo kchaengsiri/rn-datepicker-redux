@@ -1,15 +1,15 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import DateTimePicker from './DateTimePicker'
+import DateTimePickerAndroid from './DateTimePickerAndroid'
 
 const FieldDateTime = ({ input, meta }) => (
   <View>
-    <DateTimePicker
+    <DateTimePickerAndroid
       mode='datetime'
       // format='dddd, MMMM Do YYYY'
-      maxDate='1506729600000'
-      minDate={new Date()}
+      // maxDate='1506729600000'
+      // minDate={new Date()}
       // pickerStyle='spinner'
       placeholder='please select datetime'
       is24Hour={ true }

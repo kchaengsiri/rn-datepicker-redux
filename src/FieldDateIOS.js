@@ -1,16 +1,15 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import DateTimePickerAndroid from './DateTimePickerAndroid'
+import DateTimePickerIOS from './DateTimePickerIOS'
 
 const FieldDate = ({ input, meta }) => (
   <View>
-    <DateTimePickerAndroid
+    <DateTimePickerIOS
       mode='date'
       // format='dddd, MMMM Do YYYY'
       // maxDate='1506729600000'
       // minDate={new Date()}
-      // pickerStyle='spinner'
       // placeholder='please select date'
       onChange={ input.onChange }
       onBlur={ input.onBlur }

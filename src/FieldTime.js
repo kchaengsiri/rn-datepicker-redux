@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import DateTimePicker from './DateTimePicker'
+import DateTimePickerAndroid from './DateTimePickerAndroid'
 
 const FieldTime = ({ input, meta }) => (
   <View>
-    <DateTimePicker
+    <DateTimePickerAndroid
       mode='time'
       // format='h:mm a'
       // placeholder='please select time'

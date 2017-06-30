@@ -16,10 +16,6 @@ const defaultFormat = {
 }
 
 class DateTimePicker extends Component {
-  componentDidMount () {
-    console.log(this.props)
-  }
-
   _action (actionName, payload = undefined) {
     if (typeof this.props[actionName] === 'function') {
       this.props[actionName](payload)
