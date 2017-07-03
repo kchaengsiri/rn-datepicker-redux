@@ -1,18 +1,16 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import DateTimePickerIOS from './DateTimePickerIOS'
+import DateTimePickerIOS from '../src/DateTimePickerIOS'
 
-const FieldDateTimeIOS = ({ input, meta }) => (
+const FieldDate = ({ input, meta }) => (
   <View>
     <DateTimePickerIOS
-      mode='datetime'
+      mode='date'
       // format='dddd, MMMM Do YYYY'
       // maxDate='1506729600000'
       // minDate={new Date()}
-      // placeholder='please select datetime'
-      // timeZoneOffsetInMinutes={ 0 }
-      // minuteInterval={ 10 }
+      // placeholder='please select date'
       onChange={ input.onChange }
       onBlur={ input.onBlur }
       onFocus={ input.onFocus }
@@ -26,4 +24,4 @@ const FieldDateTimeIOS = ({ input, meta }) => (
   </View>
 )
 
-export default FieldDateTimeIOS
+export default FieldDate
