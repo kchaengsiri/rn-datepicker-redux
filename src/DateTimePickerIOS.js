@@ -168,7 +168,7 @@ class DateTimePicker extends Component {
                 }}
               >
                 <Text style={{ color: '#999' }}>
-                  Cancel
+                  CANCEL
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -179,7 +179,7 @@ class DateTimePicker extends Component {
                 }}
               >
                 <Text style={{ color: '#0080c0' }}>
-                  Confirm
+                  OK
                 </Text>
               </TouchableOpacity>
             </View>
