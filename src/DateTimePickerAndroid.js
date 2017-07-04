@@ -177,17 +177,9 @@ class DateTimePicker extends Component {
 }
 
 DateTimePicker.defaultProps = {
-  mode: undefined,
-  format: undefined,
-  maxDate: undefined,
-  minDate: undefined,
+  mode: 'datetime',
   pickerStyle: 'default',
-  is24Hour: undefined,
-  placeholder: '',
-  value: undefined,
-  onChange: undefined,
-  onBlur: undefined,
-  onFocus: undefined
+  placeholder: ''
 }
 
 DateTimePicker.propTypes = {
